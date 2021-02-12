@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Welcome to Quiz App</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+    <style>
+      .bd-placeholder-img {
+        font-size: 1.125rem;
+        text-anchor: middle;
+        -webkit-user-select: none;
+        -moz-user-select: none;
+        -ms-user-select: none;
+        user-select: none;
+      }
+
+      @media (min-width: 768px) {
+        .bd-placeholder-img-lg {
+          font-size: 3.5rem;
+        }
+      }
+      .heading {
+        font-family: "Lucida Console", "Courier New", monospace;
+      }
+    </style>
+</head>
+<body style="background-color:#b3c6ff;">
+  <nav class="navbar navbar-expand-lg navbar-light shadow p-3" style="background-color:#ffb380; height:100px">
+    <a class="navbar-brand" href="#"><b>Quiz App</b></a>
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarNav">
+      <ul class="navbar-nav text-right float-right ml-5 pl-3">
+        <li class="nav-item active mr-5">
+          <a class="nav-link navbar-brand" href="/">Home <span class="sr-only">(current)</span></a>
+        </li>
+        {% if not request.user.is_authenticated %}
+        <li class="nav-item active mr-5">
+          <a class="nav-link navbar-brand" href="{% url 'login_attempt' %}">Login </a>
+        </li>
+        <li class="nav-item active mr-5">
+          <a class="nav-link navbar-brand" href="{% url 'register_attempt' %}">Register</a>
+        </li>
+        {% else %}
+        <li class="nav-item active mr-5">
+          <a class="nav-link btn btn-suuccess navbar-brand" href="{% url 'view_score' %}">View Score</a>
+        </li>
+        <li class="nav-item active mr-5">
+          <a class="nav-link navbar-brand" href="{% url 'logout_attempt' %}">Logout</a>
+        </li>
+        {% endif %}
+        {% if request.user.is_authenticated %}
+        <li class="nav-item active mr-5">
+          <a class="nav-link navbar-brand" href="/">{{user.first_name}} logged in</a>
+        </li>
+        {% endif %}
+      </ul>
+    </div>
+  </nav>
+{% block content %}
+
+{% endblock %}
+</body>
+</html>

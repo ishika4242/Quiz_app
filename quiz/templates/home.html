@@ -1,0 +1,16 @@
+{% extends "base.html" %}
+{% block content %}
+<div class="container mt-5 pt-5">
+    <h1 class="heading"><p class="text-center">Select Course</p></h1>
+    <div class="row">
+    {% for course in courses %}
+        <div class="card mt-5 pt-3 mr-4 ml-4" style="width: 18rem;">
+            <div class="card-body">
+                <h5 class="card-title">{{course.course_name}}</h5>
+                <a href="/{{course.id}}" class="btn btn-primary">Give Quiz</a>
+            </div>
+        </div>
+    {% endfor %}
+    </div>
+</div>
+{% endblock %}
